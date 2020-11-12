@@ -37,7 +37,24 @@ namespace CreateSQLScriptFramework48
       List<string> allConstraints3 = new List<string>();
       for (int i = 0; i < allConstraints.Count; i++)
       {
-        allConstraints3.Add($"sp_rename '{allConstraints[i]}', '{allConstraints2[i]}'");
+        allConstraints3.Add($"sp_rename '{allConstraints[i]}', '{allConstraints2[i]}';");
+      }
+
+      // rename duplicate 
+      Dictionary<string, string> dico = new Dictionary<string, string>();
+      foreach (var item in allConstraints3)
+      {
+        string value = item;
+        if (true)
+        {
+          // TO DO
+        }
+      }
+
+      List<string> allConstraints4 = new List<string>();
+      for (int i = 0; i < allConstraints.Count; i++)
+      {
+        allConstraints4.Add($"{allConstraints3[i]}{Environment.NewLine}GO{Environment.NewLine}");
       }
 
       try
