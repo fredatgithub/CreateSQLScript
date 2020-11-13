@@ -35,16 +35,20 @@ namespace CreateSQLScriptFramework48
       // insert line
       // sp_rename 'DF__table__column__1978F273', 'DF__table__column'
       List<string> allConstraints3 = new List<string>();
+      Dictionary<string, string> dicoConstraints = new Dictionary<string, string>();
       for (int i = 0; i < allConstraints.Count; i++)
       {
         allConstraints3.Add($"sp_rename '{allConstraints[i]}', '{allConstraints2[i]}';");
+        dicoConstraints.Add(allConstraints[i], allConstraints2[i]);
       }
 
       // rename duplicate 
-      Dictionary<string, string> dico = new Dictionary<string, string>();
+      
+      //sp_rename 'DF__BSMV__idParticul__60207986', 'DF__BSMV__idParticul';
       foreach (var item in allConstraints3)
       {
-        string value = item;
+        string line = item;
+        string[] lineArray = item.Split(new string[] { "__" }, StringSplitOptions.None);
         if (true)
         {
           // TO DO
