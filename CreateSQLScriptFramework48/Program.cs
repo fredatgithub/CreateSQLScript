@@ -9,6 +9,7 @@ namespace CreateSQLScriptFramework48
     static void Main()
     {
       Action<string> display = Console.WriteLine;
+      display("Application to create a script.sql file to rename all constraints written for .NET Framework 4.8");
       List<string> allConstraints = new List<string>();
       try
       {
@@ -34,25 +35,28 @@ namespace CreateSQLScriptFramework48
 
       // insert line
       // sp_rename 'DF__table__column__1978F273', 'DF__table__column'
+      // sp_rename 'DF__BSMV__idParticul__60207986', 'DF__BSMV__idParticul';
       List<string> allConstraints3 = new List<string>();
       Dictionary<string, string> dicoConstraints = new Dictionary<string, string>();
+      Dictionary<string, string> inverseDicoConstraints = new Dictionary<string, string>();
       for (int i = 0; i < allConstraints.Count; i++)
       {
         allConstraints3.Add($"sp_rename '{allConstraints[i]}', '{allConstraints2[i]}';");
-        dicoConstraints.Add(allConstraints[i], allConstraints2[i]);
+        // rename duplicate with a number 2
+        if (inverseDicoConstraints.ContainsKey(allConstraints2[i]))
+        {
+          inverseDicoConstraints.Add($"{allConstraints2[i]}2", allConstraints[i]);
+        }
+        else
+        {
+          inverseDicoConstraints.Add(allConstraints2[i], allConstraints[i]);
+        }
       }
 
-      // rename duplicate 
-      
-      //sp_rename 'DF__BSMV__idParticul__60207986', 'DF__BSMV__idParticul';
-      foreach (var item in allConstraints3)
+      // reverse dictionary
+      foreach (var item in inverseDicoConstraints)
       {
-        string line = item;
-        string[] lineArray = item.Split(new string[] { "__" }, StringSplitOptions.None);
-        if (true)
-        {
-          // TO DO
-        }
+        dicoConstraints.Add(item.Value, item.Key);
       }
 
       List<string> allConstraints4 = new List<string>();
@@ -76,6 +80,7 @@ namespace CreateSQLScriptFramework48
         display($"exception while trying to write the result file: {exception.Message}");
       }
 
+      display("The file script.sql has been created");
       display("Press any key to exit:");
       Console.ReadKey();
     }
