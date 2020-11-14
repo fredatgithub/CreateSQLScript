@@ -41,6 +41,11 @@ namespace CreateSQLScript
       Dictionary<string, string> inverseDicoConstraints = new Dictionary<string, string>();
       for (int i = 0; i < allConstraints.Count; i++)
       {
+        if (allConstraints[i].StartsWith("PK"))
+        {
+          continue;
+        }
+
         allConstraints3.Add($"sp_rename '{allConstraints[i]}', '{allConstraints2[i]}';");
         // rename duplicate with a number 2
         if (inverseDicoConstraints.ContainsKey(allConstraints2[i]))
