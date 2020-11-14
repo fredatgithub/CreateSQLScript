@@ -11,9 +11,10 @@ namespace CreateSQLScript
       Action<string> display = Console.WriteLine;
       display("Application to create a script.sql file to rename all constraints written for .NET Core 3.1");
       List<string> allConstraints = new List<string>();
+      string fileName = Properties.Resources.TextFileName;
       try
       {
-        using (StreamReader streamReader = new StreamReader("liste_constraints.txt"))
+        using (StreamReader streamReader = new StreamReader(fileName))
         {
           while (streamReader.Peek() >= 0)
           {
@@ -70,9 +71,11 @@ namespace CreateSQLScript
         allConstraints4.Add($"{allConstraints3[i]}{Environment.NewLine}GO{Environment.NewLine}");
       }
 
+      string outputFileName = Properties.Resources.OutputSQLFileName;
+
       try
       {
-        using (StreamWriter streamWriter = new StreamWriter("script.sql"))
+        using (StreamWriter streamWriter = new StreamWriter(outputFileName))
         {
           foreach (string item in allConstraints3)
           {
