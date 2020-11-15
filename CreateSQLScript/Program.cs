@@ -42,6 +42,7 @@ namespace CreateSQLScript
       Dictionary<string, string> inverseDicoConstraints = new Dictionary<string, string>();
       for (int i = 0; i < allConstraints.Count; i++)
       {
+        // exclude all primary keys
         if (allConstraints[i].StartsWith("PK"))
         {
           continue;
