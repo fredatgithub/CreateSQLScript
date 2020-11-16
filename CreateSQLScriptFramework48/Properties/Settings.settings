@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CreateSQLScriptFramework48.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="OutputSQLFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">script.sql</Value>
+    </Setting>
+    <Setting Name="TextFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">liste_constraints.txt</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
